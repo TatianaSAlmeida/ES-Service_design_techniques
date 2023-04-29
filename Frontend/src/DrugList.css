@@ -13,6 +13,10 @@ body{
 .rectangle{
     background-color: #D9D9D9;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .rectangle .drug-list{
@@ -45,6 +49,4 @@ body{
     display: flex;
     align-items: center;
     justify-items: center;
-    margin-left: 70px;
-    margin-bottom: 70px;
 }
