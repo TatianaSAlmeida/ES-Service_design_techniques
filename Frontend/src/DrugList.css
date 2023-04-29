@@ -59,6 +59,7 @@ body{
     align-items: flex-start;
     justify-content: space-around;
     margin: 1rem;
+    border-bottom: 1px solid red;
 
 }
 
