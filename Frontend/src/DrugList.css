@@ -10,25 +10,41 @@ body{
     font-size: x-large;
 }
 
-.drug-list{
+.rectangle{
     background-color: #D9D9D9;
-    border-radius: 10%;
+    border-radius: 10px;
+}
+
+.rectangle .drug-list{
     display: flex;
     flex-direction: row;
 }
 
-.drug-list .drug{
+.rectangle .drug-list .drug{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-around;
+    margin: 1rem;
+
+}
+
+.rectangle .drug-list .select{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
     margin: 1rem;
 }
 
-.drug-list .select{
+
+.rectangle .btn{
+    height: 30px;
+    font-size: small; 
+    margin-bottom: 1rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 1rem;
+    align-items: center;
+    justify-items: center;
+    margin-left: 70px;
+    margin-bottom: 70px;
 }

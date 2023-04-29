@@ -6,36 +6,50 @@ function DrugList() {
 
     const drugList = ['Abacavir', 'Bacitracina'];
 
-    const listItems = drugList.map( (drugName) =>
-        <div key={drugName}>
-            {drugName}
+    const drugList2 = {
+        Abacavir: ['Volvo', 'Mercedes'], 
+        Bacitracina: ['Audi', 'Seat'],
+        Citrina: ['Ferrari', 'Ford']
+
+    };
+
+    const listKeys = Object.keys(drugList2).map( (key) =>
+        <div key={key}>
+            {key}
         </div>
+    );
+
+    const listValues = Object.keys(drugList2).map( (key) =>
+        <select className='generic'>
+            {
+                drugList2[key].map((value) => 
+                    <option>
+                        {value}
+                    </option> 
+                )
+            } 
+        </select>
+   
     );
 
     return(
         <div>
             <img src={logo} className="logo" alt="Logo" />
             <div className='title'>List of drugs</div>
-            <div className='drug-list'>
-                <div className='drug'>
-                    {drugList.map( (drugName) =>
-                            <div key={drugName}>
-                                {drugName}
-                            </div>
-                    )}
+            <div className = "rectangle">
+                <div className='drug-list'>
+                    <div className='drug'>
+                        {listKeys}
+                    </div>
+                    <div className='select'>
+                        {listValues}
+                    </div>
                 </div>
-                <div className='select'>
-                    {drugList.map( (drugName) =>
-                        <select name="cars" id="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                        </select>
-                    )}
-                </div>
-                
+                <button className='btn'>
+                    Submit
+                </button>
             </div>
+            
         </div>
     )
 }
