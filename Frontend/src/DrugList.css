@@ -59,8 +59,19 @@ body{
     align-items: flex-start;
     justify-content: space-around;
     margin: 1rem;
-    border-bottom: 1px solid red;
+    width: 300px;
+}
 
+
+.body .centered .rectangle .drug-list .drug .drug-row{
+    border-bottom: 1px solid #B1AEAE;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .body .centered .rectangle .drug-list .select{

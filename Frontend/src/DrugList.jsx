@@ -9,26 +9,21 @@ function DrugList() {
         Abacavir: ['Volvo', 'Mercedes'], 
         Bacitracina: ['Audi', 'Seat'],
         Citrina: ['Ferrari', 'Ford']
-
     };
 
     const listKeys = Object.keys(drugList2).map( (key) =>
-        <div key={key}>
+        <div key={key} className='drug-row'>
             {key}
+            <select className='generic' key={key}>
+                {
+                    drugList2[key].map((value) => 
+                        <option>
+                            {value}
+                        </option> 
+                    )
+                } 
+            </select>
         </div>
-    );
-
-    const listValues = Object.keys(drugList2).map( (key) =>
-        <select className='generic' key={key}>
-            {
-                drugList2[key].map((value) => 
-                    <option>
-                        {value}
-                    </option> 
-                )
-            } 
-        </select>
-   
     );
 
     return(
@@ -43,9 +38,6 @@ function DrugList() {
                     <div className='drug-list'>
                         <div className='drug'>
                             {listKeys}
-                        </div>
-                        <div className='select'>
-                            {listValues}
                         </div>
                     </div>
                     <button className='btn'>
