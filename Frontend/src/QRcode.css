@@ -1,7 +1,6 @@
 body{
     background-color: white;
     margin: 0;
-    
 }
 
 .body{
@@ -11,9 +10,19 @@ body{
     align-items: center;
 }
 
+.body .images{
+    position: relative;
+}
+
 .body .img{
-    max-width: 100%;
     transform: scale(1.5);
+    position: relative;
+
+}
+
+.body .logo{
+    position: absolute;
+    top: 1.5rem;
 }
 
 .body .items{
@@ -21,7 +30,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: scale(0.7);
+    width: 50%;
 }
 
 .items .phrase{
@@ -39,3 +48,4 @@ body{
     margin-top: 30px;
     border-color: #6CA8D9;
 }
+

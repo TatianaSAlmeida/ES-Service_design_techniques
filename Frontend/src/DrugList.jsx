@@ -1,10 +1,9 @@
 
 import logo from '/src/assets/logo.png';
+import image from '/src/assets/horizontal_img.png'
 import './DrugList.css';
 
 function DrugList() {
-
-    const drugList = ['Abacavir', 'Bacitracina'];
 
     const drugList2 = {
         Abacavir: ['Volvo', 'Mercedes'], 
@@ -20,7 +19,7 @@ function DrugList() {
     );
 
     const listValues = Object.keys(drugList2).map( (key) =>
-        <select className='generic'>
+        <select className='generic' key={key}>
             {
                 drugList2[key].map((value) => 
                     <option>
@@ -33,22 +32,28 @@ function DrugList() {
     );
 
     return(
-        <div>
-            <img src={logo} className="logo" alt="Logo" />
-            <div className='title'>List of drugs</div>
-            <div className = "rectangle">
-                <div className='drug-list'>
-                    <div className='drug'>
-                        {listKeys}
+        <div className='body'>
+            <div className='images'>
+                <img src={logo} className='logo' alt="Logo" />    
+                <img src={image} className='img' alt="Image" />
+            </div>  
+            <div className='centered'>
+                <div className='title'>List of drugs</div>
+                <div className = "rectangle">
+                    <div className='drug-list'>
+                        <div className='drug'>
+                            {listKeys}
+                        </div>
+                        <div className='select'>
+                            {listValues}
+                        </div>
                     </div>
-                    <div className='select'>
-                        {listValues}
-                    </div>
+                    <button className='btn'>
+                        Submit
+                    </button>
                 </div>
-                <button className='btn'>
-                    Submit
-                </button>
             </div>
+            
             
         </div>
     )

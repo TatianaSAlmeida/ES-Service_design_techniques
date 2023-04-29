@@ -1,30 +1,59 @@
 body{
-    background-color: #A8B3C3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #ffff;
+    margin: 0;
 }
 
-.title{
-    font-weight: bold;
-    font-size: x-large;
+.body .images{
+    position: relative;
 }
 
-.rectangle{
-    background-color: #D9D9D9;
-    border-radius: 10px;
+.body .img{
+    transform: scale(1.5);
+    position: relative;
+    
+}
+
+.body .logo{
+    position: relative;
+
+}
+
+.body .centered{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.rectangle .drug-list{
+.body .centered .title{
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.body .centered .rectangle{
+    background-color: #ffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.body .centered .rectangle .drug-list{
     display: flex;
     flex-direction: row;
 }
 
-.rectangle .drug-list .drug{
+.body .centered .rectangle .drug-list .drug{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -33,7 +62,7 @@ body{
 
 }
 
-.rectangle .drug-list .select{
+.body .centered .rectangle .drug-list .select{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -41,12 +70,17 @@ body{
     margin: 1rem;
 }
 
-
-.rectangle .btn{
+.body .centered .rectangle .btn{
     height: 30px;
     font-size: small; 
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100px;
+    background-color: #6CA8D9;
+    border-color: #6CA8D9;
+    color: #ffff;
 }
