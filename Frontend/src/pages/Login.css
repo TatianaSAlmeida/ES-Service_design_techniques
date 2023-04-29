@@ -1,0 +1,48 @@
+
+* {
+    background:#A8B3C3;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #A2CDDA;
+    width: 400px;
+    height: 350px;
+
+
+    
+}
+
+.login .logo_saude{
+    max-width: 50%;
+    margin-top: 30px;
+    background-color: transparent;
+}
+.login .login {
+    background-color: #A2CDDA;
+    
+    
+}
+.login .writingField{
+    margin-bottom: 20px;
+    width: 290px;
+    background-color: #DAE1E4;
+
+}
+
+
+.login .btn{
+    background-color: #6E85D8;
+    border-radius: 15px;
+    height: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-size: 15px;
+    width: 300px;
+
+}
