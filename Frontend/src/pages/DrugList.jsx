@@ -1,15 +1,22 @@
 
 import logo from '/src/assets/logo.png';
 import image from '/src/assets/horizontal_img.png'
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react"
 import './DrugList.css';
 
 function DrugList() {
 
-    const drugList2 = {
-        Abacavir: ['Volvo', 'Mercedes'], 
-        Bacitracina: ['Audi', 'Seat'],
-        Citrina: ['Ferrari', 'Ford']
-    };
+    //  const drugList2 = {
+    //      Abacavir: ['Volvo', 'Mercedes'], 
+    //      Bacitracina: ['Audi', 'Seat'],
+    //      Citrina: ['Ferrari', 'Ford']
+    //  };
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const dataStr = searchParams.get('data');
+    const drugList2 = JSON.parse(dataStr);
+
 
     const listKeys = Object.keys(drugList2).map( (key) =>
         <div key={key} className='drug-row'>
