@@ -2,7 +2,7 @@
 import image from '/src/assets/horizontal_img.png';
 import logo from '/src/assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import './QRcode.css';
 
 function QRcode() {
@@ -36,8 +36,8 @@ function QRcode() {
 
             
             console.log(newDict);
-            const dict_str = JSON.stringify(newDict);
-            navigate('/list?data='+ encodeURIComponent(dict_str));
+    
+            navigate('/list', { state: newDict });
             
 
           } catch (error) {

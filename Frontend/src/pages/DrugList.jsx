@@ -13,9 +13,7 @@ function DrugList() {
     //      Citrina: ['Ferrari', 'Ford']
     //  };
     const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const dataStr = searchParams.get('data');
-    const drugList2 = JSON.parse(dataStr);
+    const drugList2 = location.state;
 
 
     const listKeys = Object.keys(drugList2).map( (key) =>
