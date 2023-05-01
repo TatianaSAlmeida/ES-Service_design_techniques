@@ -1,6 +1,19 @@
 body{
     background-color: #ffff;
     margin: 0;
+    width: 100%;
+}
+
+.body:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.body .content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .body .images{
@@ -36,6 +49,9 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #767474;
+    font-size:250%;
 }
 
 .body .centered .rectangle{
@@ -45,12 +61,15 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    width: 80%;
 }
+
+
 
 .body .centered .rectangle .drug-list{
     display: flex;
     flex-direction: row;
+    
 }
 
 .body .centered .rectangle .drug-list .drug{
@@ -59,19 +78,23 @@ body{
     align-items: flex-start;
     justify-content: space-around;
     margin: 1rem;
-    width: 300px;
+    width: 100%;
+
 }
 
 
 .body .centered .rectangle .drug-list .drug .drug-row{
-    border-bottom: 1px solid #B1AEAE;
+    border-bottom: 2px solid #B1AEAE;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    padding-bottom: 3px;
+    margin-bottom: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #B1AEAE;
+    font-size:200%;
 }
 
 .body .centered .rectangle .drug-list .select{
@@ -81,6 +104,7 @@ body{
     justify-content: space-around;
     margin: 1rem;
 }
+
 
 .body .centered .rectangle .btn{
     height: 30px;
@@ -96,3 +120,19 @@ body{
     border-color: #6CA8D9;
     color: #ffff;
 }
+
+.selectRow{
+    position: right;
+    display: inline-block;
+}
+.selectBox{
+    background-color: #C9D4D8;
+    border-radius: 10px;
+    right: 0; /* aligns the dropdown to the right */
+    z-index: 1;
+}
+
+.dropdown-content{
+    background-color: #8B8F90;
+}
+
