@@ -130,9 +130,11 @@ body{
     border-radius: 10px;
     right: 0; /* aligns the dropdown to the right */
     z-index: 1;
+    text-align-last: right;
 }
 
 .dropdown-content{
     background-color: #8B8F90;
+    
 }
 
