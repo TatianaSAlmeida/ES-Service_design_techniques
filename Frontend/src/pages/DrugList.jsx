@@ -7,11 +7,11 @@ import './DrugList.css';
 
 function DrugList() {
 
-    //  const drugList2 = {
+    //   const drugList2 = {
     //      Abacavir: ['Volvo', 'Mercedes'], 
     //      Bacitracina: ['Audi', 'Seat'],
     //      Citrina: ['Ferrari', 'Ford']
-    //  };
+    //   };
     const location = useLocation();
     const drugList2 = location.state;
 
@@ -19,7 +19,6 @@ function DrugList() {
     const listKeys = Object.keys(drugList2).map( (key) =>
         <div key={key} className='drug-row'>
             {key}
-            <div className = "selectRow">
                 <select className='selectBox' key={key}>
                     {
                         drugList2[key].map((value) => 
@@ -29,7 +28,6 @@ function DrugList() {
                         )
                     } 
                 </select>
-            </div>
         </div>
     );
 

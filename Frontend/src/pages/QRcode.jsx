@@ -17,12 +17,14 @@ function QRcode() {
             const content = await response.text();
             setFileContent(content);
             const dictionary = {};
-            const lines = content.split("\n"); // split the text in lines
+            const lines = content.split("\r\n"); // split the text in lines
 
             lines.map((line, i) => {
                 const l = line.split("--"); //split by "--"
                 const key = l[0];
-                const value = l.slice(1);
+                var value = l.slice(1);
+                console.log(value);
+     
                 dictionary[key] = value;
             });
             console.log(dictionary);
