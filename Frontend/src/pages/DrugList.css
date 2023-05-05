@@ -2,6 +2,9 @@ body{
     background-color: #ffff;
     margin: 0;
     width: 100%;
+    display: flex;
+    orientation: absolute;
+    flex-direction: column;
 }
 
 .body:after{
@@ -16,20 +19,11 @@ body{
     height: 100%;
 }
 
-.body .images{
-    position: relative;
-}
-
 .body .img{
-    transform: scale(1.5);
-    position: relative;
-    
+    transform: scale(1.5);    
 }
 
-.body .logo{
-    position: relative;
 
-}
 
 .body .centered{
     position: absolute;
