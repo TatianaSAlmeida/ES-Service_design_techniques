@@ -38,8 +38,9 @@ function DrugList() {
                 <img src={image} className='img' alt="Image" />
             </div>  
             <div className='centered'>
-                <div className='title'>List of drugs</div>
                 <div className = "rectangle">
+
+                <div className='title'>List of drugs</div>
                     <div className='drug-list'>
                         <div className='drug'>
                             {listKeys}

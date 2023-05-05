@@ -2,6 +2,10 @@ body{
     background-color: #ffff;
     margin: 0;
     width: 100%;
+    display: flex;
+    orientation: absolute;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .body:after{
@@ -10,29 +14,23 @@ body{
     padding-bottom: 100%;
 }
 
+.body .logo{
+    margin-left: -180px;
+}
 .body .content{
-    position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.body .images{
-    position: relative;
-}
-
 .body .img{
-    transform: scale(1.5);
-    position: relative;
-    
-}
-
-.body .logo{
-    position: relative;
+    transform: scale(1.5);    
+    margin-bottom: 60px;
 
 }
+
+
 
 .body .centered{
-    position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
@@ -42,7 +40,7 @@ body{
     align-items: center;
 }
 
-.body .centered .title{
+.body  .title{
     font-weight: bold;
     font-size: x-large;
     display: flex;
@@ -54,7 +52,7 @@ body{
     font-size:250%;
 }
 
-.body .centered .rectangle{
+.body  .rectangle{
     background-color: #ffff;
     border-radius: 10px;
     display: flex;
@@ -66,13 +64,13 @@ body{
 
 
 
-.body .centered .rectangle .drug-list{
+.body .rectangle .drug-list{
     display: flex;
     flex-direction: row;
     
 }
 
-.body .centered .rectangle .drug-list .drug{
+.body  .drug-list .drug{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
