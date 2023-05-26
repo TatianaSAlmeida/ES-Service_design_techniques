@@ -14,6 +14,15 @@ body{
     padding-bottom: 100%;
 }
 
+.body .quantity{
+    width: 30px;
+    background-color: #C9D4D8;
+    border-radius: 10px;
+    margin-right: 10px;
+
+    
+}
+
 .body .logo{
     margin-left: -180px;
 }
@@ -63,7 +72,11 @@ body{
 }
 
 
-
+.body .selections{
+    display: flex;
+    justify-content: flex-end;
+    background-color: red;
+}
 .body .rectangle .drug-list{
     display: flex;
     flex-direction: row;
@@ -95,6 +108,7 @@ body{
     font-size:200%;
 }
 
+
 .body .centered .rectangle .btn{
     height: 30px;
     font-size: small; 
@@ -123,10 +137,10 @@ body{
     text-align-last: right;
     width:40%;
     
+    
 }
 
 .dropdown-content{
     background-color: #8B8F90;
-    
 }
 

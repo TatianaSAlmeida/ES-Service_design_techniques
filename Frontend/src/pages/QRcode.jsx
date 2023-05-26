@@ -7,7 +7,6 @@ import './QRcode.css';
 
 function QRcode() {
 
-    const [fileContent, setFileContent] = useState("");
     const navigate = useNavigate();
 
     //Generates a random prescription, based on the contents of the "public/ListOfDrugs.txt file"
@@ -15,19 +14,22 @@ function QRcode() {
         try {
             const response = await fetch("/ListOfDrugs.txt");
             const content = await response.text();
-            setFileContent(content);
             const dictionary = {};
             const lines = content.split("\r\n"); // split the text in lines
 
             lines.map((line, i) => {
                 const l = line.split("--"); //split by "--"
-                const key = l[0];
+                const randomNumber1 = Math.floor(Math.random() * 4) + 1; // generate random number between 1 and 5
+                const d = {}
+                d["drug"] = l[0];
+                d["dosage"] = randomNumber1;
+                const key = d;
                 var value = l.slice(1);
-                console.log(value);
+                //console.log(value);
      
                 dictionary[key] = value;
             });
-            console.log(dictionary);
+            //console.log(dictionary);
 
             const randomNumber = Math.floor(Math.random() * 4) + 2; // generate random number between 2 and 5
 

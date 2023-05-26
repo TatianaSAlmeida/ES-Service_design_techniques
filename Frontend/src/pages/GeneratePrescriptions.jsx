@@ -4,19 +4,25 @@ import { useEffect, useState } from "react"
 
 function GeneratePrescriptions(){
 
-    const [fileContent, setFileContent] = useState("");
 
     const generate = async () => {
         try {
             const response = await fetch("/ListOfDrugs.txt");
             const content = await response.text();
-            setFileContent(content);
             const dictionary = {};
             const lines = content.split("\n"); // split the text in lines
 
             lines.map((line, i) => {
+                //console.log("aqui");
                 const l = line.split("--"); //split by "--"
-                const key = l[0];
+                const randomNumber1 = Math.floor(Math.random() * 4) + 1; // generate random number between 1 and 5
+                const arr = [];
+                console.log("olaaaa");
+                //console.log(randomNumber1);
+                arr.push(l[0]);
+                arr.push(randomNumber1);
+                const key = arr;
+                //console.log(key);
                 const value = l.slice(1);
                 dictionary[key] = value;
             });
@@ -30,7 +36,7 @@ function GeneratePrescriptions(){
             const newDict = Object.fromEntries(randomEntries); // convert array back to dictionary
 
 
-            console.log(newDict);
+            //console.log(newDict);
 
           } catch (error) {
             console.error(error);
