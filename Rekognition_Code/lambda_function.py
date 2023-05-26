@@ -1,19 +1,25 @@
+#LAMBDA FUNCTION TO DEPLOY ON AWS 
+#adapted from https://github.com/teja156/amazon-rekognition-example/blob/main/lamdafunction.py
+
+
 from __future__ import print_function
 
 import boto3
-from decimal import Decimal
-import json
-import urllib
 
+dynamodb = boto3.client('dynamodb')
+s3 = boto3.client('s3')
+rekognition = boto3.client('rekognition')
+
+#Adds faces to the rekognition 
 def index_faces(bucket, key):
-
     response = rekognition.index_faces(
         Image={"S3Object":
             {"Bucket": bucket,
             "Name": key}},
-            CollectionId="famouspersons")
+            CollectionId="firstcollection")
     return response
 
+#Adds person data to dynamodb with their name
 def update_index(tableName,faceId, fullName):
     response = dynamodb.put_item(
         TableName=tableName,
@@ -23,7 +29,8 @@ def update_index(tableName,faceId, fullName):
             }
         ) 
 
-def lambda_handler(event):
+#HAndles the events 
+def lambda_handler(event, context):
 
     # Get the object from the event
     bucket_name = event['Records'][0]['s3']['bucket']['name']
@@ -46,27 +53,3 @@ def lambda_handler(event):
         print(e)
         print("Error processing object {} from bucket {}. ".format(key, bucket_name))
         raise e
-    
-
-
-s3 = boto3.resource('s3')
-
-# Get list of objects for indexing
-images=[('images/edgar.png','Edgar Duarte'),
-      ('images/sofia.jpg','Sofia Neves'),
-      ('images/tatiana.jpg','Tatiana Almeida')
-      ]
-
-dynamodb = boto3.client('dynamodb')
-rekognition = boto3.client('rekognition')
-
-# Iterate through list to upload objects to S3   
-for image in images:
-    file = open(image[0],'rb')
-    object = s3.Object('randompersons-images','index/'+ image[0])
-    ret = object.put(Body=file,
-                    Metadata={'FullName':image[1]})
-    
-
-
-
