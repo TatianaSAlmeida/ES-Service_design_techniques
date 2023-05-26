@@ -1,0 +1,12 @@
+.img-container{
+    height: 60px;
+    width: 60px;
+    border: 2px dashed black
+}
+
+
+.img-profile{
+    width: "100%";
+    height: "100%";
+    position: "absolute";
+}
