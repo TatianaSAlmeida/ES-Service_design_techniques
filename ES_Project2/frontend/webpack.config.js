@@ -16,7 +16,7 @@ module.exports = {
           loader: "babel-loader",
         },
         resolve: {
-          extensions: ['.ts', '.js'],
+          extensions: ['.ts', '.js', '.jsx', '.css', '.png'],
         }
       },
     ],

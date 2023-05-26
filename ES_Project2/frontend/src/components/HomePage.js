@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Test from "./Test"; 
+import Login from "../pages/Login.jsx";
 
 import {
   BrowserRouter,
@@ -18,7 +19,7 @@ export default class HomePage extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Test />} />
+          <Route exact path="/" element={<Login />} />
         </Routes>
       </BrowserRouter>
     );

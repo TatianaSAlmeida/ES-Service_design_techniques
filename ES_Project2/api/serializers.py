@@ -2,7 +2,12 @@ from rest_framework import serializers
 from .models import Name
 
 
+
 class NameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Name
         fields = ('id', 'name',)
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
