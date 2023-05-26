@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Test.css';
 
 export default class Test extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export default class Test extends Component {
 
   render() {
     return (
-      <p>Hellooooo</p>
+      <p  className = "red">Hellooooo</p>
     );
   }
 }
