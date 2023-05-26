@@ -19,15 +19,20 @@ function DrugList() {
     const listKeys = Object.keys(drugList2).map( (key) =>
         <div key={key} className='drug-row'>
             {key}
+            <div className="selections">
+                <input type="number" id="drugs" className="quantity" min="" defaultValue={key}></input>
+
                 <select className='selectBox' key={key}>
                     {
                         drugList2[key].map((value) => 
                             <option class = "dropdown-content">
                                 {value}
                             </option> 
+                            
                         )
                     } 
                 </select>
+            </div>
         </div>
     );
 
