@@ -25,9 +25,11 @@ function Login(){
         .then(response => response.data)
         .then(data => {
             if(data.message) {
+                console.log(user);
                 localStorage.setItem('data', JSON.stringify(data));
                 setUser(data.user);
-                console.log(data.message)
+                console.log(data.message);
+                console.log(user);
             } else {
                 setErrors(data.errors);
                 console.log("erros")

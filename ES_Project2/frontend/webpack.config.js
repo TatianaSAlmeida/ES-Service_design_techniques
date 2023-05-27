@@ -15,9 +15,22 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+        
         resolve: {
-          extensions: ['.ts', '.js'],
+          extensions: ['.ts', '.js', '.jsx'],
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },

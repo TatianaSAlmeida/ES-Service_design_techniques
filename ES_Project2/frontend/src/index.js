@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-import App from "./components/App";
-=======
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Login from './components/Login.js'
@@ -22,5 +19,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   
   )
-
->>>>>>> Stashed changes
