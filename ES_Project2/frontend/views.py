@@ -7,5 +7,21 @@ def index(request, *args, **kwargs):
 
 def face_recognition(request, *args, **kwargs):
     print("SDFASDFSDFASFWESDF")
-    return render(request, 'frontend/a.html')
 
+    context = {
+            'users': 'aaaa',
+            'files': 'bbb',
+        }
+
+    return render(request, 'frontend/a.html', context)
+
+
+def confirm_payment(request, *args, **kwargs):
+    
+    print("AAAAAAA")
+    context = {
+            'users': 'ccccc',
+            'files': 'ddddd',
+        }
+    
+    return render(request, 'frontend/a.html', context)
