@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.6.0",
+    "@pyodide/pyodide": "^0.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.0"

@@ -37,3 +37,14 @@
     margin-bottom: 60px;
 
 }
+
+
+.btn{
+    border-radius: 10px;
+    background-color: #6CA8D9;
+    color: white;
+    width: 600px;
+    font-size: xx-large;
+    margin-top: 30px;
+    border-color: #6CA8D9;
+}
