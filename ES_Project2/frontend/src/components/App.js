@@ -1,20 +1,18 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import HomePage from "./HomePage";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import Login from './Login.js'
+//import GeneratePrescriptions from './components/GeneratePrescriptions.js'
+//import DrugList from './pages/DrugList.jsx'
+//import QRcode from './pages/QRcode.jsx'
+import FaceRecognition from './FaceRecognition.js'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default function App() {
+  
 
-  render() {
-    return (
-      <div>
-        <HomePage />
-      </div>
-    );
-  }
+  <p>aaaaaa</p>
+
 }
 
-const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+
+
