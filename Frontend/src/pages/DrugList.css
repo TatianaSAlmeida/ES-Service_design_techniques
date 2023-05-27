@@ -75,7 +75,6 @@ body{
 .body .selections{
     display: flex;
     justify-content: flex-end;
-    background-color: red;
 }
 .body .rectangle .drug-list{
     display: flex;

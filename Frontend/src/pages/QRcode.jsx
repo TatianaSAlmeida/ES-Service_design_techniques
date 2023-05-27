@@ -20,12 +20,10 @@ function QRcode() {
             lines.map((line, i) => {
                 const l = line.split("--"); //split by "--"
                 const randomNumber1 = Math.floor(Math.random() * 4) + 1; // generate random number between 1 and 5
-                const d = {}
-                d["drug"] = l[0];
-                d["dosage"] = randomNumber1;
-                const key = d;
-                var value = l.slice(1);
-                //console.log(value);
+
+                var key = l[0];
+                
+                var value = [l.slice(1), randomNumber1];
      
                 dictionary[key] = value;
             });

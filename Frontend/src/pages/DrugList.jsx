@@ -20,7 +20,7 @@ function DrugList() {
         <div key={key} className='drug-row'>
             {key}
             <div className="selections">
-                <input type="number" id="drugs" className="quantity" min="" defaultValue={key}></input>
+                <input type="number" id="drugs" className="quantity" min="" defaultValue={drugList2[key][1]}></input>
 
                 <select className='selectBox' key={key}>
                     {
