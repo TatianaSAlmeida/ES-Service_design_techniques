@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Test from "./Test"; 
+import Test from "./Test.js"; 
 
 import {
   BrowserRouter,

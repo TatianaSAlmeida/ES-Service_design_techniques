@@ -1,0 +1,145 @@
+body{
+    background-color: #ffff;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    orientation: absolute;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.body:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.body .quantity{
+    width: 30px;
+    background-color: #C9D4D8;
+    border-radius: 10px;
+    margin-right: 10px;
+
+    
+}
+
+.body .logo{
+    margin-left: -180px;
+}
+.body .content{
+    width: 100%;
+    height: 100%;
+}
+
+.body .img{
+    transform: scale(1.5);    
+    margin-bottom: 60px;
+
+}
+
+
+
+.body .centered{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.body  .title{
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #767474;
+    font-size:250%;
+}
+
+.body  .rectangle{
+    background-color: #ffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+
+.body .selections{
+    display: flex;
+    justify-content: flex-end;
+}
+.body .rectangle .drug-list{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.body  .drug-list .drug{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 1rem;
+    width: 100%;
+
+}
+
+/* w */
+.body .centered .rectangle .drug-list .drug .drug-row{
+    border-bottom: 2px solid #B1AEAE;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 3px;
+    margin-bottom: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #B1AEAE;
+    font-size:200%;
+}
+
+
+.body .centered .rectangle .btn{
+    height: 30px;
+    font-size: small; 
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100px;
+    background-color: #6CA8D9;
+    border-color: #6CA8D9;
+    color: #ffff;
+}
+
+.selectRow{
+    position: right;
+    display: inline-block;
+    
+}
+.selectBox{
+    background-color: #C9D4D8;
+    border-radius: 10px;
+    right: 0; /* aligns the dropdown to the right */
+    z-index: 1;
+    text-align-last: right;
+    width:40%;
+    
+    
+}
+
+.dropdown-content{
+    background-color: #8B8F90;
+}
+
