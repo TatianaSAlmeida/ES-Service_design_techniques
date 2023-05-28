@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import ReactDOM from "react-dom";
 import './FaceRecognition.css';
+import axios from 'axios';
 
 
 function Recognition() {
@@ -13,9 +14,8 @@ function Recognition() {
     const imageUploader = React.useRef(null);
     let scriptText = React.useRef(null);
 
-    const [out, setOutput] = useState("Loading");
-
-
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
     //Uploads a image
     const uploadImage = e => {
@@ -37,6 +37,27 @@ function Recognition() {
     };
 
 
+
+    const handleSubmit = async () => {
+        //Checks if image is selected
+        if(uploadedImage.current.file) {
+            axios.post('/face-recognition/', { })
+                                        .then(async res => {
+                                            console.log("funciona?");
+                                            console.log(res);
+                                            await new Promise(resolve => setTimeout(resolve, 1000)); // Delay for 1 second
+                                            console.log('After delay');
+                                        })
+                                        .catch(err => {
+                                            console.log("nao funciona?");
+                                            console.log(err);
+                                        });
+            console.log("yoo");
+            
+        };
+    }
+
+
     // const runRekognitionScript = async(code) => {
     //     const pyodide = window.pyodide;
 
@@ -50,23 +71,21 @@ function Recognition() {
                 <img src={image} className='img' alt="Image" />
             </div>  
 
-            <form className="grid" action="/result" method="POST">
-                <div className="img-container" onClick={() => imageUploader.current.click()}>
-                    <img className = 'img-profile' ref={uploadedImage}/>
-                </div>
+            <div className="img-container" onClick={() => imageUploader.current.click()}>
+                <img className = 'img-profile' ref={uploadedImage}/>
+            </div>
             
-                <input type="file" accept = "image/*" onChange={uploadImage} ref={imageUploader} className = "img-input"  alt="Submit" />
-                <center><input class="file_submit" type="Submit"/></center>
-            </form>
+            <input type="file" accept = "image/*" onChange={uploadImage} ref={imageUploader} className = "img-input"  alt="Submit" />
+            <b>Click picture to upload Image</b>
             
-            <b>Click to upload Image</b>
+            <center><input class="btn" type="Submit" onClick={() => handleSubmit()} /></center>
+     
+            
             
             {/* <div className="items">
                 <button className='btn' onClick={() => runPythonFunction()}>Submit for approval</button>
             </div> */}
 
-            <p>{out}</p>
-            
         </div>
     )
 }

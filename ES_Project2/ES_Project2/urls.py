@@ -7,5 +7,6 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('', include('frontend.urls')),
     path('face-recognition', include('frontend.urls')),
-    path('list', include('frontend.urls'))
+    path('list', include('frontend.urls')),
+    path('qrcode', include('frontend.urls'))
 ]

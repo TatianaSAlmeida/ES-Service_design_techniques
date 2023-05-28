@@ -1,27 +1,34 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import viewsets
+import 
 
 # Create your views here.
 def index(request, *args, **kwargs):
     return render(request, 'frontend/index.html')
 
 
+
+
+# @api_view(['GET'])
+# def face_recognition(request, *args, **kwargs):
+#     print("wasdqwqwdqwe")
+#     return render(request, 'frontend/index.html')
+
+
 def face_recognition(request, *args, **kwargs):
-    print("SDFASDFSDFASFWESDF")
-
-    context = {
-            'users': 'aaaa',
-            'files': 'bbb',
-        }
-
-    return render(request, 'frontend/a.html', context)
+    if (request.method == 'POST'):
+        print("wasdqwqwdqwe")
+        return render(request, 'frontend/index.html')
+    if (request.method == 'GET'):
+        print("aaaaaaaa")
+        return render(request, 'frontend/index.html')
 
 
 def confirm_payment(request, *args, **kwargs):
     
-    print("AAAAAAA")
-    context = {
-            'users': 'ccccc',
-            'files': 'ddddd',
-        }
+    print("werwerwerwer")
+  
     
-    return render(request, 'frontend/a.html', context)
+    return render(request, 'frontend/a.html')
