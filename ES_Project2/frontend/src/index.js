@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/' element={<QRcode />} />
         <Route path='/list' element={<DrugList />} />
         <Route path='/face-recognition' element={<FaceRecognition />} />
-        <Route path='/finalizePayment' element={<ConfirmPayment />} />
+        <Route path='/confirm-payment' element={<ConfirmPayment />} />
        </Routes>
     </BrowserRouter>
   

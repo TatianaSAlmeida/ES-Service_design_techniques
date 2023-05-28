@@ -1,0 +1,25 @@
+body{
+    background-color: #ffff;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    orientation: absolute;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.body:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.body .logo{
+    margin-left: -180px;
+}
+
+.body .img{
+    transform: scale(1.5);    
+    margin-bottom: 60px;
+
+}

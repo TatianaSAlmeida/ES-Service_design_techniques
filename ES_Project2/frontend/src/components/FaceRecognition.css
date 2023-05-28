@@ -1,3 +1,20 @@
+
+body{
+    background-color: #ffff;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    orientation: absolute;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.body:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
 .img-container{
     width: 300px; 
     height: 300px;

@@ -6,13 +6,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import './FaceRecognition.css';
 import axios from 'axios';
+import FormData from 'form-data'
 
 
 function Recognition() {
 
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
-    let scriptText = React.useRef(null);
+    const navigate = useNavigate();
+    const [imageFile, setFile] = useState();
+    const [errorMessage, setErrorMessage] = useState("");
 
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
@@ -24,6 +27,7 @@ function Recognition() {
 
         //Sees if file exists
         if (file) {
+            setFile(file);
             const reader = new FileReader();
             const {current} = uploadedImage;
 
@@ -39,30 +43,34 @@ function Recognition() {
 
 
     const handleSubmit = async () => {
+
         //Checks if image is selected
         if(uploadedImage.current.file) {
-            axios.post('/face-recognition/', { })
+
+            console.log(uploadedImage);
+
+            let formField = new FormData();
+            formField.append("image", imageFile, uploadedImage.name);
+
+            axios.post('/face_recognition_verifier/', formField)
                                         .then(async res => {
-                                            console.log("funciona?");
-                                            console.log(res);
-                                            await new Promise(resolve => setTimeout(resolve, 1000)); // Delay for 1 second
-                                            console.log('After delay');
+                                            console.log(res.data);
+                                            
+                                            if(res.data["name"]){
+                                                let dict = {"name" : res.data["name"]}
+                                                navigate('/confirm-payment', { state:  dict });
+                                            }
+                                            else{
+                                                setErrorMessage("No valid user was identified. Please submit another image.")
+                                            }
+                                            
                                         })
                                         .catch(err => {
-                                            console.log("nao funciona?");
                                             console.log(err);
                                         });
-            console.log("yoo");
             
         };
     }
-
-
-    // const runRekognitionScript = async(code) => {
-    //     const pyodide = window.pyodide;
-
-    //     return await pyodide.runPythonAsync(code);
-    // }
 
     return(
         <div className='body'>
@@ -80,7 +88,7 @@ function Recognition() {
             
             <center><input class="btn" type="Submit" onClick={() => handleSubmit()} /></center>
      
-            
+            <b>{errorMessage}</b>
             
             {/* <div className="items">
                 <button className='btn' onClick={() => runPythonFunction()}>Submit for approval</button>
