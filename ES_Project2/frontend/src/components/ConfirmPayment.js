@@ -15,11 +15,11 @@ const ConfirmPayment = () => {
   
 
 
-  useEffect(() => {
-    if(paymentInformation === undefined || paymentInformation === null){
-      navigate("/");
-    }
-  }, []);
+  const redirect = () => {
+    navigate("/")
+  }
+
+
 
 
  
@@ -31,7 +31,23 @@ const ConfirmPayment = () => {
           <img src={image} className='img' alt="Image" />
       </div>  
 
-      <p>{paymentInformation["name"]}</p>
+
+      <div class="textbox">
+        {paymentInformation ? (
+          <>
+          Payments of <b>{paymentInformation["name"]}</b> was accepted. Robot will now start its operation.
+          <br></br>
+          <button class="btn_close" onClick={() => redirect()}>Close</button>
+          </>
+        ) : (
+          <>
+          Payment information not available
+          <button class="btn_close" onClick={() => redirect()}>Close</button>
+          </>
+        )}
+        
+      </div>
+
       
     </div>
 

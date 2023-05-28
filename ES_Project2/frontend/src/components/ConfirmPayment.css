@@ -23,3 +23,28 @@ body{
     margin-bottom: 60px;
 
 }
+
+.textbox {
+    width: 400px;
+    padding: 10px;
+    border: 5px solid  #6CA8D9;
+    border-radius: 15%;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+
+.btn_close{
+    border-radius: 10px;
+    background-color: #6CA8D9;
+    color: black;
+    width: 40%;
+    font-size: xx-large;
+    margin-top: 30px;
+    border-color: #6CA8D9;
+    
+}
+

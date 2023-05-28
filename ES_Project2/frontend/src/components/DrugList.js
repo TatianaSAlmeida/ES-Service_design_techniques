@@ -25,7 +25,7 @@ function DrugList() {
 
                 <select className='selectBox' key={key}>
                     {
-                        drugList2[key].map((value) => 
+                        drugList2[key][0].map((value) => 
                             <option class = "dropdown-content">
                                 {value}
                             </option> 
