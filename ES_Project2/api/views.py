@@ -7,6 +7,7 @@ from .models import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
@@ -21,6 +22,7 @@ class PharmacistViewSet(viewsets.ModelViewSet):
    queryset = Pharmacist.objects.all()
    serializer_class = LoginSerializer
 
+
 @api_view(['POST'])
 def api_login(request):
     print(request.data)
@@ -32,6 +34,13 @@ def api_login(request):
     print("PASSWORD ", password)
     user = Pharmacist.objects.get(email=email, password=password)
     if user is not None:
-        return Response({'message': 'Login successful'})
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'message': 'Login successful',
+            'access_token': str(refresh.access_token),
+            'refresh_token': str(refresh),
+            'id': user.id,
+            'valid': '1'
+        })
     else:
-        return Response({'message': 'Invalid email or password'}, status=401)
+        return Response({'message': 'Invalid email or password', 'valid': '0'}, status=401)

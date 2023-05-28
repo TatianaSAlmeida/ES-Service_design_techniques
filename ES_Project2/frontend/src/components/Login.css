@@ -46,3 +46,8 @@
     width: 200px;
 
 }
+
+.error{
+    color: black;
+    background-color: red;
+}

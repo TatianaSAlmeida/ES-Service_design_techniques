@@ -1,12 +1,49 @@
 
 import image from '/static/assets/horizontal_img.png';
 import logo from '/static/assets/logo.png';
+import { Link, Navigate } from "react-router-dom"
+
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import './QRcode.css';
 import React from "react";
+import jwtDecode from 'jwt-decode';
 
 function QRcode() {
+
+    const [user, setUser] = useState(undefined);
+
+
+    // ================ User authentication ==========================
+    const checkTokenExpiration = () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if(accessToken){
+            const decodedToken = jwtDecode(accessToken);
+            console.log("2");
+            setUser(decodedToken);
+  
+        }
+      
+
+      };
+
+    useEffect(() => {
+        checkTokenExpiration();
+    }, []);
+
+    const logout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('data');
+        setUser(undefined);
+    }
+
+
+   
+
+    setInterval(checkTokenExpiration, 5 * 60 * 1000);
+
+    //===========================================================
 
     const navigate = useNavigate();
 
@@ -50,13 +87,16 @@ function QRcode() {
     }
 
 
-
     return(
+        !user ? 
+        <Navigate to = "/" />
+        :
         <div className="body">
             <div className='images'>
                 <img src={logo} className='logo' alt="Logo" />    
                 <img src={image} className='img' alt="Image" />
-            </div>    
+            </div> 
+            <button onClick={() => logout()} className="btn"> Logout </button>   
             <div className='items'>
                 <div className='phrase'>
                 “At our pharmacy, we prioritize your health and well-being 
