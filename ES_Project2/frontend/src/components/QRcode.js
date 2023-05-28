@@ -2,13 +2,17 @@ import React from "react";
 
 import image from '/static/assets/horizontal_img.png';
 import logo from '/static/assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import './QRcode.css';
 
 function QRcode() {
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const pharmacistId = location.state;
+
 
     //Generates a random prescription, based on the contents of the "public/ListOfDrugs.txt file"
     const generate = async () => {
@@ -37,11 +41,10 @@ function QRcode() {
 
             const newDict = Object.fromEntries(randomEntries); // convert array back to dictionary
 
-            const biggerDict = 
             console.log(newDict);
     
             navigate('/list', { state: newDict });
-            //navigate('/list', { pharmacist: , client_name: , state: newDict });
+            //navigate('/list', { pharmacist: pharmacistId, client_name: "", state: newDict });
 
 
           } catch (error) {
