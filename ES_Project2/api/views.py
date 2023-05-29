@@ -44,3 +44,28 @@ def api_login(request):
         })
     else:
         return Response({'message': 'Invalid email or password', 'valid': '0'}, status=401)
+
+
+def lambda_handler(event, context):
+    # Retrieve the list of completed purchases from the database
+    completed_purchases = get_completed_purchases()
+    
+    for purchase_id in completed_purchases:
+        # Retrieve the purchase details from the database
+        purchase_details = get_purchase_details(purchase_id)
+        
+        prescription = purchase_details['prescription']
+        
+        # Simulate gathering drugs for 15 seconds
+       
+        
+        # Simulate giving the prescription to the client for 15 seconds
+        give_prescription(prescription)
+        
+        # Update the database with the gathered drugs and prescription delivery status
+        update_database(purchase_id, prescription)
+        
+    return {
+        'statusCode': 200,
+        'message': 'Completed purchases processed successfully.'
+    }
