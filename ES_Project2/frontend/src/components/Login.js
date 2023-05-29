@@ -18,16 +18,13 @@ function Login(){
 
 
 
-    const checkTokenExpiration = () => {
+    const checkTokenExpiration = async () => {
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken ){
-            const decodedToken = jwtDecode(accessToken);
-            console.log("1");
+            const decodedToken = await jwtDecode(accessToken);
+
             setUser(decodedToken);
-            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
-                console.log("aqui");
-                  setUser(undefined);
-              }
+           
         }
     
     };
@@ -70,12 +67,10 @@ function Login(){
                     setUser(decodedToken);
                 } else {
                     setErrors(['Invalid email or password'])
-                    console.log("erros")
                 }
             })
             .catch(err => {
                 setErrors(["Invalid email or password"])
-                console.log("errinhos");
                 console.log(err);
             });
         }
