@@ -1,18 +1,66 @@
-import React from "react";
-
 import image from '/static/assets/horizontal_img.png';
 import logo from '/static/assets/logo.png';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, Navigate } from "react-router-dom"
+
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import './QRcode.css';
+import React from "react";
+import jwtDecode from 'jwt-decode';
+import Popup from './Popup';
+
+
+
 
 function QRcode() {
 
+
+    const pharmacistID = localStorage.getItem('data');
+
+
+    const accessToken = localStorage.getItem('accessToken');
+ 
+    const [user, setUser] = useState(undefined);
+    const [buttonPopup, setButtonPopup] = useState(false);
+    // ================ User authentication ==========================
+   
+    const checkTokenExpiration = async () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if(accessToken){
+            const decodedToken = await jwtDecode(accessToken);
+            setUser(decodedToken);
+            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                  setUser(undefined);
+              }
+    
+        }else{
+            navigate('/');
+    
+        }
+      
+    
+      };
+    useEffect(() => {
+        checkTokenExpiration();
+    }, []);
+
+    const logout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('data');
+        setUser(undefined);
+        checkTokenExpiration();
+
+    }
+
+
+   
+
+    setInterval(checkTokenExpiration, 5 * 60 * 1000);
+
+    //===========================================================
+
     const navigate = useNavigate();
-
-    const location = useLocation();
-    const pharmacistId = location.state;
-
 
     //Generates a random prescription, based on the contents of the "public/ListOfDrugs.txt file"
     const generate = async () => {
@@ -32,7 +80,6 @@ function QRcode() {
      
                 dictionary[key] = value;
             });
-            //console.log(dictionary);
 
             const randomNumber = Math.floor(Math.random() * 4) + 2; // generate random number between 2 and 5
 
@@ -40,12 +87,9 @@ function QRcode() {
             const randomEntries = entries.sort(() => Math.random() - 0.5).slice(0, randomNumber); // shuffle array and extract the X random pairs
 
             const newDict = Object.fromEntries(randomEntries); // convert array back to dictionary
-
-            console.log(newDict);
     
-            //navigate('/list', { state: newDict });
-            navigate('/list', { pharmacist: pharmacistId, state: newDict });
-
+            navigate('/list', { state: newDict });
+            
 
           } catch (error) {
             console.error(error);
@@ -54,13 +98,24 @@ function QRcode() {
     }
 
 
-
     return(
+        
+        <div >
+            <div className="logout">
+                <button onClick={() => {setButtonPopup(true)}} className="btn-2"> Status </button>   
+                <button onClick={() => logout()} className="btn-2"> Logout</button>  
+            </div>
+            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+
+            </Popup>
+            
         <div className="body">
+
             <div className='images'>
                 <img src={logo} className='logo' alt="Logo" />    
                 <img src={image} className='img' alt="Image" />
-            </div>    
+            </div> 
+
             <div className='items'>
                 <div className='phrase'>
                 “At our pharmacy, we prioritize your health and well-being 
@@ -74,6 +129,9 @@ function QRcode() {
             </div>
                     
         </div>
+        </div>
+       
+
     )
 }
 
