@@ -11,7 +11,7 @@ import axios from 'axios'
 
 function Popup(props){
 
-    const [purchases, setPurchases] = useState({data: {d:'', da:''}});
+    const [purchases, setPurchases] = useState(undefined);
 
 
     useEffect(() => {
@@ -47,7 +47,23 @@ function Popup(props){
             <div className="popup-inner">
                 <button className="close-btn" onClick={() => props.setTrigger(false)}>close</button>
                 {props.children}
-                {listPurchases}
+                <div>
+                <div className='row'> 
+                    <div className='column'> Prescription </div>
+                    <div className='column'> Paid </div>
+                    <div className='column'> Status </div>
+                    <div className='column'> Client Name </div>
+
+                </div>
+                {purchases && purchases.map((item, index) => (
+                    <div key={index} className= "row">
+                        <div className='column'> {item.fields.prescription} </div>
+                        <div className='column'>  {item.fields.is_paid.toString()} </div>
+                        <div className='column'> {item.fields.purchase_status} </div>
+                        <div className='column'> {item.fields.client_name} </div>
+                    </div>
+                ))}
+                </div>;
             </div>
 
 

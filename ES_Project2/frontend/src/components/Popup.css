@@ -22,5 +22,17 @@
     position:absolute;
     top:16px;
     right:16px;
+}
 
+.row{
+    display:flex;
+    flex-direction: row;
+
+}
+
+.column{
+    padding-right: 100px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
