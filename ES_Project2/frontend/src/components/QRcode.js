@@ -26,11 +26,11 @@ function QRcode() {
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken){
             const decodedToken = await jwtDecode(accessToken);
-            console.log("2");
-            new Promise( resolve => setTimeout(resolve, 5000));
             setUser(decodedToken);
-    
-            console.log(decodedToken);
+            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                console.log("aqui");
+                  setUser(undefined);
+              }
     
         }else{
             navigate('/');

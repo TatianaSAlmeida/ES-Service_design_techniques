@@ -25,29 +25,21 @@ function Popup(props){
     
     const get_purchases = () => {
         axios.post('api/get_purchases/', {}).then(response => {
-            console.log("a");
-            console.log(response);
-            setPurchases(response);
+            console.log("yoooo");
+            setPurchases(JSON.parse(response.data));
+
         } )
     }
     
     useEffect(() => {
         get_purchases();
     }, []);
-    
+
 
     const listPurchases = 
-        Object.keys(purchases).map((res) =>  
-            
                 <div>
-                    <div className='row' >
-                    
-
-                    </div>
-                </div>
-
-    
-    );
+                   
+                </div>;
         
 
     return(props.trigger) ? ( 

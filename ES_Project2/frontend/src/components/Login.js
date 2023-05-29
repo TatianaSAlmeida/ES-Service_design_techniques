@@ -22,7 +22,10 @@ function Login(){
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken ){
             const decodedToken = await jwtDecode(accessToken);
-
+            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                console.log("aqui");
+                  setUser(undefined);
+              }
             setUser(decodedToken);
            
         }
@@ -33,6 +36,7 @@ function Login(){
     }, []);
 
 
+    setInterval(checkTokenExpiration, 5 * 60 * 1000);
 
     const login = () => {
         var error = []
