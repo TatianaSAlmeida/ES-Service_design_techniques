@@ -18,7 +18,7 @@ function DrugList() {
     const drugList2 = location.state;
     const is_paid = false
     const purchase_status = "Waiting Payment"
-    const client_name = ""
+    const client_name = "Not defined"
     const pharmacist_id = parseInt(localStorage.getItem('data'));
 
 
