@@ -7,7 +7,6 @@ import background from '../../static/assets/login_background.png'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode';
 
-
 function Login(){
     
     const [user, setUser] = useState(undefined);
@@ -19,7 +18,6 @@ function Login(){
 
 
 
-    // Call the function on application initialization
     const checkTokenExpiration = () => {
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken ){
@@ -37,7 +35,6 @@ function Login(){
         checkTokenExpiration();
     }, []);
 
-    setInterval(checkTokenExpiration, 5 * 60 * 1000);
 
 
     const login = () => {

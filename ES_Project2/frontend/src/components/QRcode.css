@@ -11,6 +11,7 @@ body{
 }
 
 .body .images{
+    margin-top: -35px;
     position: relative;
 }
 
@@ -39,6 +40,29 @@ body{
     color: #AEAEAE;
 }
 
+.logout{
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-right:30px;
+}
+
+
+.btn-2{
+    border-radius: 10px;
+    background-color: #6CA8D9;
+    color: white;
+    margin-left:10px;
+    position: relative;
+    display:flex;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    width:100px;
+    font-size: 20px;
+    margin-top: 30px;
+    border-color: #6CA8D9;
+}
 .items .btn{
     border-radius: 10px;
     background-color: #6CA8D9;

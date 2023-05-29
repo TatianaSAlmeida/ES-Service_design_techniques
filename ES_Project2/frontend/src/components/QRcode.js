@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 import './QRcode.css';
 import React from "react";
 import jwtDecode from 'jwt-decode';
+import Popup from './Popup';
 
 function QRcode() {
 
     const [user, setUser] = useState(undefined);
+    const [buttonPopup, setButtonPopup] = useState(false);
 
 
     // ================ User authentication ==========================
@@ -91,12 +93,22 @@ function QRcode() {
         !user ? 
         <Navigate to = "/" />
         :
+        <div >
+            <div className="logout">
+                <button onClick={() => {setButtonPopup(true)}} className="btn-2"> Status </button>   
+                <button onClick={() => logout()} className="btn-2"> Logout</button>  
+            </div>
+            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+
+            </Popup>
+            
         <div className="body">
+
             <div className='images'>
                 <img src={logo} className='logo' alt="Logo" />    
                 <img src={image} className='img' alt="Image" />
             </div> 
-            <button onClick={() => logout()} className="btn"> Logout </button>   
+
             <div className='items'>
                 <div className='phrase'>
                 “At our pharmacy, we prioritize your health and well-being 
@@ -109,6 +121,7 @@ function QRcode() {
                 </button>    
             </div>
                     
+        </div>
         </div>
     )
 }
