@@ -11,7 +11,7 @@ import axios from 'axios'
 
 function Popup(props){
 
-    const [purchases, setPurchases] = useState(undefined);
+    const [purchases, setPurchases] = useState({data: {d:'', da:''}});
 
 
     useEffect(() => {
@@ -24,7 +24,11 @@ function Popup(props){
     }, [purchases]);
     
     const get_purchases = () => {
-        axios.post('api/get_purchases/', {}).then(response => setPurchases(response) )
+        axios.post('api/get_purchases/', {}).then(response => {
+            console.log("a");
+            console.log(response);
+            setPurchases(response);
+        } )
     }
     
     useEffect(() => {
@@ -34,17 +38,14 @@ function Popup(props){
 
     const listPurchases = 
         Object.keys(purchases).map((res) =>  
-            res.map((data) => {
+            
                 <div>
                     <div className='row' >
-                        <div> {data.field.prescription}</div>
-                        <div> {data.field.is_paid}</div>
+                    
 
                     </div>
                 </div>
-            })
-            
-    
+
     
     );
         

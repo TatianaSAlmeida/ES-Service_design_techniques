@@ -13,8 +13,10 @@ class Pharmacist(models.Model):
     password = models.CharField()
 
 class Purchase(models.Model):
-    prescription = models.CharField()
-    is_paid = models.BooleanField()
-    purchase_status = models.CharField()
-    client_name = models.CharField()
-    tutorial_category = models.ForeignKey(Pharmacist, default=1, verbose_name="Pharmacist", on_delete=models.CASCADE)
+    PURCHASE_TYPES = (('WP', 'Waiting Payment'), ('WR', 'Waiting for Robot'), ('C', 'Completed'))
+
+    prescription = models.CharField(default="")
+    is_paid = models.BooleanField(default=False)
+    purchase_status = models.CharField(choices=PURCHASE_TYPES, default='Waiting Payment',max_length=40)
+    client_name = models.CharField(default="")
+    pharmacist = models.ForeignKey(Pharmacist, default=1, verbose_name="Pharmacist", on_delete=models.CASCADE)
