@@ -5,7 +5,8 @@ import { useEffect, useState } from "react"
 import './DrugList.css';
 import React from "react";
 import axios from 'axios'
-
+import jwtDecode from 'jwt-decode';
+import Popup from './Popup';
 
 function DrugList() {
 
@@ -14,46 +15,78 @@ function DrugList() {
     //      Bacitracina: ['Audi', 'Seat'],
     //      Citrina: ['Ferrari', 'Ford']
     //   };
+
+
+
     const location = useLocation();
     const drugList2 = location.state;
     const is_paid = false
     const purchase_status = "Waiting Payment"
     const client_name = "Not defined"
     const pharmacist_id = parseInt(localStorage.getItem('data'));
-
-
     const prescription = {};
-    useEffect(() => {
-            createDictKeys()
-        }, []);
-
-
     const navigate = useNavigate();
+
+    const [user, setUser] = useState('1');
+    const [buttonPopup, setButtonPopup] = useState(false);
+
+  
+      // ================ User authentication ==========================
+     
+    const checkTokenExpiration =  () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if(accessToken){
+            const decodedToken = jwtDecode(accessToken);
+            setUser(decodedToken);
+            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                setUser(undefined);
+            }
+    
+        }else{
+            navigate('/');
+    
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('data');
+        setUser(undefined);
+        checkTokenExpiration();
+    }
+        
+    useEffect(() => {
+        checkTokenExpiration()
+    }, []);
+  
+
+    createDictKeys()
+
+    setInterval(checkTokenExpiration, 5 * 60 * 1000);
+  
 
 
     function handlePurchase(){
-       
         console.log(prescription)
         axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist_id})
-             .then( response => {console.log(response)})
+             .then( response => { 
+                localStorage.setItem('purchaseID', response.data["id"]);})
              .finally(() => {
-                console.log("there")
                 navigate('/face-recognition');
-            }).catch(err => {
-                console.log("Erro" + err)
             });
-        console.log("ok")
     }
 
     function createDictKeys(){
         Object.keys(drugList2).map((key, index) => prescription[index] = [drugList2[key][1], drugList2[key][0][0]]);
+        console.log(prescription)
     }
 
     const listKeys = Object.keys(drugList2).map( (key, index) =>
         <div key={key} className='drug-row'>
             {key}
             <div className="selections">
-                <input type="number" id={'drug-'+index} className="quantity" min="" defaultValue={drugList2[key][1]} onChange={() => {if(document.getElementById('drug-'+index)){ prescription[index][0] = document.getElementById('drug-'+index).value }}}></input>
+                <input type="number" id={'drug-'+index} className="quantity" min="" defaultValue={drugList2[key][1]} onChange={() => {if(document.getElementById('drug-'+index).value){ prescription[index][0] = document.getElementById('drug-'+index).value }}}></input>
 
                 <select className='selectBox' key={key} id={"select-"+index} onChange={() => {if(document.getElementById('select-'+index).value){prescription[index][1] = document.getElementById('select-'+index).value}}}>
                     {
@@ -70,6 +103,11 @@ function DrugList() {
     );
 
     return(
+        <div>
+            <div className="logout">
+                <button onClick={() => {setButtonPopup(true)}} className="btn-2"> Status </button>   
+                <button onClick={() => logout()} className="btn-2"> Logout</button>  
+            </div>
         <div className='body'>
             <div className='images'>
                 <img src={logo} className='logo' alt="Logo" />    
@@ -91,6 +129,7 @@ function DrugList() {
             </div>
             
             
+        </div>
         </div>
     )
 }

@@ -28,13 +28,12 @@ class PurchaseViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def api_login(request):
-    print(request.data)
+    
     serializer = LoginSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     email = serializer.validated_data['email']
     password = serializer.validated_data['password']
-    print("EMAIL ", email)
-    print("PASSWORD ", password)
+    
     user = Pharmacist.objects.get(email=email, password=password)
     if user is not None:
         refresh = RefreshToken.for_user(user)
@@ -54,9 +53,10 @@ def api_login(request):
 @api_view(['POST'])
 def api_purchase(request):
 
-    serializer = PurchaseSerializer(data=request.data)
+    #serializer = PurchaseSerializer(data=request.data)
     
     prescription = request.data['prescription']
+    print(request.data)
     is_paid = request.data['is_paid']
     purchase_status = request.data['purchase_status']
     client_name = request.data['client_name']
@@ -65,7 +65,7 @@ def api_purchase(request):
     purchase_obj = Purchase.objects.create(prescription=prescription, is_paid = is_paid, purchase_status = purchase_status, client_name = client_name, pharmacist_id = pharmacist_id)
 
 
-    return Response({'message': 'Yo', 'valid': '0'})
+    return Response({'message': 'Yo', 'id': purchase_obj.id})
 
 
 @api_view(['POST'])

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import background from '../../static/assets/login_background.png'
 import axios from 'axios'
 import jwtDecode from 'jwt-decode';
-
 function Login(){
     
     const [user, setUser] = useState(undefined);

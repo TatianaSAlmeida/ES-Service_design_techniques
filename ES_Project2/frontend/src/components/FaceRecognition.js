@@ -7,7 +7,8 @@ import ReactDOM from "react-dom";
 import './FaceRecognition.css';
 import axios from 'axios';
 import FormData from 'form-data'
-
+import jwtDecode from 'jwt-decode';
+import Popup from './Popup';
 
 function Recognition() {
 
@@ -19,7 +20,46 @@ function Recognition() {
 
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-
+    const [user, setUser] = useState('1');
+    const [buttonPopup, setButtonPopup] = useState(false);
+  
+      // ================ User authentication ==========================
+     
+      const checkTokenExpiration = async () => {
+          const accessToken = localStorage.getItem('accessToken');
+          if(accessToken){
+              const decodedToken = await jwtDecode(accessToken);
+              setUser(decodedToken);
+              if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                  console.log("aqui");
+                    setUser(undefined);
+                }
+      
+          }else{
+              navigate('/');
+      
+          }
+        
+      
+        };
+      useEffect(() => {
+          checkTokenExpiration();
+      }, []);
+  
+      const logout = () => {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem('data');
+          setUser(undefined);
+          checkTokenExpiration();
+  
+      }
+  
+  
+     
+  
+      setInterval(checkTokenExpiration, 5 * 60 * 1000);
+  
     //Uploads a image
     const uploadImage = e => {
         //Gets file from event
@@ -73,6 +113,14 @@ function Recognition() {
     }
 
     return(
+        <div>
+            <div className="logout">
+                <button onClick={() => {setButtonPopup(true)}} className="btn-2"> Status </button>   
+                <button onClick={() => logout()} className="btn-2"> Logout</button>  
+            </div>
+            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+
+            </Popup>
         <div className='body'>
             <div className='images'>
                 <img src={logo} className='logo' alt="Logo" />    
@@ -94,6 +142,7 @@ function Recognition() {
                 <button className='btn' onClick={() => runPythonFunction()}>Submit for approval</button>
             </div> */}
 
+        </div>
         </div>
     )
 }

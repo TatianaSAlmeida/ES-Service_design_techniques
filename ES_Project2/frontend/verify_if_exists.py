@@ -23,7 +23,8 @@ def check_face(image_path):
                 CollectionId='firstcollection',
                 Image={'Bytes':image_binary}                                       
                 )
-    except:
+    except Exception as e:
+        print(e)
         print("No faces in image")
         return None
 

@@ -3,6 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
 from .verify_if_exists import check_face
+import boto3
+import json
 from PIL import Image
 
 # Create your views here.
@@ -25,7 +27,17 @@ def face_recognition_verifier(request, *args, **kwargs):
     if(response):
         #TODO
         #Update payment to completed
-        #Start robot process        
+        # step_functions_client = boto3.client('stepfunctions')  
+        # state_machine_arn = "arn:aws:states:us-east-1:291038237275:stateMachine:MyStateMachine    "
+        # input_json = {"action": "Retrieve", "id": request.data["payment_id"]}
+
+        # try:
+        #     step_functions_client.start_execution(
+        #                     stateMachineArn=state_machine_arn, input=json.dumps(input_json))
+            
+        # except Exception as e:
+        #     print(e)
+
         return Response({'message': 'Valid', 'name': response})
     else:
         return Response({'message': 'Invalid'})
