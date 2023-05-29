@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Name(models.Model):
-    
     name = models.CharField(max_length=70)
     
     def __str__(self):
@@ -13,8 +12,10 @@ class Pharmacist(models.Model):
     password = models.CharField()
 
 class Purchase(models.Model):
+    PURCHASE_TYPES = (('WP', 'Waiting Payment'), ('WR', 'Waiting for Robot'), ('C', 'Completed'))
+
     prescription = models.CharField()
     is_paid = models.BooleanField()
     purchase_status = models.CharField()
     client_name = models.CharField()
-    tutorial_category = models.ForeignKey(Pharmacist, default=1, verbose_name="Pharmacist", on_delete=models.CASCADE)
+    pharmacist = models.ForeignKey(Pharmacist, default=1, verbose_name="Pharmacist", on_delete=models.CASCADE)

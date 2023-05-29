@@ -1,10 +1,11 @@
-
 import logo from '/static/assets/logo.png';
 import image from '/static/assets/horizontal_img.png'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react"
 import './DrugList.css';
 import React from "react";
+import axios from 'axios'
+
 
 function DrugList() {
 
@@ -15,18 +16,47 @@ function DrugList() {
     //   };
     const location = useLocation();
     const drugList2 = location.state;
+    const is_paid = false
+    const purchase_status = "Waiting Payment"
+    const client_name = ""
+    const pharmacist = localStorage.getItem('data');
+    console.log("ID: " + pharmacist)
 
 
-    const listKeys = Object.keys(drugList2).map( (key) =>
+    const prescription = {};
+    useEffect(() => {
+            createDictKeys()
+        }, []);
+
+
+    const navigate = useNavigate();
+
+
+    function handlePurchase(){
+        console.log("hello")
+        axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist})
+             .then()
+             .finally(() => {
+                console.log("there")
+                navigate('/face-recognition');
+            });
+        console.log("ok")
+    }
+
+    function createDictKeys(){
+        Object.keys(drugList2).map((key, index) => prescription[index] = [drugList2[key][1], drugList2[key][0][0]]);
+    }
+
+    const listKeys = Object.keys(drugList2).map( (key, index) =>
         <div key={key} className='drug-row'>
             {key}
             <div className="selections">
-                <input type="number" id="drugs" className="quantity" min="" defaultValue={drugList2[key][1]}></input>
+                <input type="number" id={'drug-'+index} className="quantity" min="" defaultValue={drugList2[key][1]} onChange={() => {if(document.getElementById('drug-'+index)){ prescription[index][0] = document.getElementById('drug-'+index).value }}}></input>
 
-                <select className='selectBox' key={key}>
+                <select className='selectBox' key={key} id={"select-"+index} onChange={() => {if(document.getElementById('select-'+index).value){prescription[index][1] = document.getElementById('select-'+index).value}}}>
                     {
-                        drugList2[key].map((value) => 
-                            <option class = "dropdown-content">
+                        drugList2[key][0].map((value) => 
+                            <option className = "dropdown-content" id="option">
                                 {value}
                             </option> 
                             
@@ -52,7 +82,7 @@ function DrugList() {
                             {listKeys}
                         </div>
                     </div>
-                    <button className='btn'>
+                    <button className='btn' onClick={() => {handlePurchase()}}>
                         Submit
                     </button>
                 </div>

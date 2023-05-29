@@ -1,0 +1,52 @@
+
+  
+
+    
+
+.account {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25%;
+    margin-right: 52%;
+    
+}
+.login{
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    background-image: url(../assets/login_background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+
+.login .writingField{
+    border-radius: 15px;
+    margin-bottom: 20px;
+    width: 290px;
+    background-color: #FFFFFF;
+    border-color: #AEAEAE;
+
+}
+
+
+.login .btn{
+
+    background-color: #6CA8D9;
+    border-radius: 10px;
+    height: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 15px;
+    width: 200px;
+
+}

@@ -11,16 +11,18 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
-
-
-class NameView(generics.ListAPIView):
-    model = Name
+class NameView(viewsets.ModelViewSet):
+    queryset = Name.objects.all()
     serializer_class = NameSerializer
-
 
 class PharmacistViewSet(viewsets.ModelViewSet):
    queryset = Pharmacist.objects.all()
    serializer_class = LoginSerializer
+
+
+class PurchaseViewSet(viewsets.ModelViewSet):
+   queryset = Purchase.objects.all()
+   serializer_class = PurchaseSerializer
 
 
 @api_view(['POST'])
@@ -46,26 +48,28 @@ def api_login(request):
         return Response({'message': 'Invalid email or password', 'valid': '0'}, status=401)
 
 
-def lambda_handler(event, context):
-    # Retrieve the list of completed purchases from the database
-    completed_purchases = get_completed_purchases()
-    
-    for purchase_id in completed_purchases:
-        # Retrieve the purchase details from the database
-        purchase_details = get_purchase_details(purchase_id)
-        
-        prescription = purchase_details['prescription']
-        
-        # Simulate gathering drugs for 15 seconds
-       
-        
-        # Simulate giving the prescription to the client for 15 seconds
-        give_prescription(prescription)
-        
-        # Update the database with the gathered drugs and prescription delivery status
-        update_database(purchase_id, prescription)
-        
-    return {
-        'statusCode': 200,
-        'message': 'Completed purchases processed successfully.'
-    }
+
+
+@api_view(['POST'])
+def api_purchase(request):
+    print("1")
+    print(request.data)
+    serializer = PurchaseSerializer(data=request.data)
+    print("2")
+
+    serializer.is_valid(raise_exception=True)
+    print("3")
+
+    prescription = serializer.validated_data['prescription']
+    is_paid = serializer.validated_data['is_paid']
+    purchase_status = serializer.validated_data['purchase_status']
+    client_name = serializer.validated_data['client_name']
+    pharmacist_id = serializer.validated_data['pharmacist_id']
+
+    print("PRESCRIPTION ", prescription)
+    print("IS_PAID ", is_paid)
+    print("PURCHASE_STATUS ", purchase_status)
+    print("client_name ", client_name)
+    print("pharmacist_id ", pharmacist_id)
+
+    purchase_obj = Purchase.objects.create(prescription=prescription, is_paid = is_paid, purchase_status = purchase_status, client_name = client_name, pharmacist_id = pharmacist_id)

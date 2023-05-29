@@ -1,4 +1,3 @@
-
 import image from '/static/assets/horizontal_img.png';
 import logo from '/static/assets/logo.png';
 import { Link, Navigate } from "react-router-dom"
@@ -14,6 +13,10 @@ function QRcode() {
 
     const [user, setUser] = useState(undefined);
     const [buttonPopup, setButtonPopup] = useState(false);
+
+    const pharmacistID = localStorage.getItem('data');
+    console.log("ID: " + pharmacistID)
+
 
 
     // ================ User authentication ==========================
@@ -79,7 +82,7 @@ function QRcode() {
             
             console.log(newDict);
     
-            navigate('/list', { state: newDict });
+            navigate('/list', { pharmacist: pharmacistID, state: newDict });
             
 
           } catch (error) {
