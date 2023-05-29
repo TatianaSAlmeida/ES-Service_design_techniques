@@ -67,6 +67,8 @@ def api_purchase(request):
 
     return Response({'message': 'Yo', 'valid': '0'})
 
+
+@api_view(['POST'])
 def api_get_purchase(request):
     purchases = Purchase.objects.all()
     serialized_purchases = serializers.serialize('json', purchases)
