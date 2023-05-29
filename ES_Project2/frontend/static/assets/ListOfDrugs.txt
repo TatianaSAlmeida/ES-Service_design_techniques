@@ -1,4 +1,4 @@
-Amoxicillin --Augmentin --Amoxil -- Amoxicillin/clavulanic acid [Generic]
+Amoxicillin --Augmentin --Amoxil --Amoxicillin/clavulanic acid [Generic]
 Atorvastatin --Lipitor --Atorvastatin calcium [Generic]
 Azithromycin --Zithromax --Azithrocin --Azithromycin dihydrate [Generic]
 Ciprofloxacin --Cipro --Ciloxan --Ciprofloxacin hydrochloride [Generic]
