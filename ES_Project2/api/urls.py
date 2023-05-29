@@ -3,10 +3,8 @@ from rest_framework import routers
 
 from .views import NameView, PharmacistViewSet, PurchaseViewSet, api_login, api_purchase, api_get_purchase
 
-router = routers.DefaultRouter()
-router.register(r'name', NameView)
-router.register(r'pharmacist', PharmacistViewSet)
-router.register(r'purchase', PurchaseViewSet)
+from django.urls import path
+from .views import NameView
 
 urlpatterns = [
    path('', include(router.urls)),

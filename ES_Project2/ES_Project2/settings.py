@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,10 +94,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "postgres",
-        'USER': "postgres",
-        'PASSWORD': "postgres",
-        'HOST': "relationaldb.cdi3uyljvemz.us-east-1.rds.amazonaws.com",
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("USERNAMES"),
+        'PASSWORD': os.environ.get("PASSWORD"),
+        'HOST': os.environ.get("END_POINT"),
         'PORT': '5432',
     }
 }

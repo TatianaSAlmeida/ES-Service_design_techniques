@@ -9,4 +9,5 @@ urlpatterns = [
     path('qrcode', include('frontend.urls')),
     path('face-recognition', include('frontend.urls')),
     path('list', include('frontend.urls'))
+    path('confirm-payment', include('frontend.urls'))
 ]
