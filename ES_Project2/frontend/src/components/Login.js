@@ -25,7 +25,6 @@ function Login(){
         axios.post('api/login/', {email, password})
              .then(res => {
                 setUser(res.data.id);
-
             }).finally(() => {
                 console.log(user)
                 navigate('/qrcode', { state: user });

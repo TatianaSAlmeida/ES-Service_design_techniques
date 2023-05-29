@@ -38,3 +38,27 @@ def api_login(request):
     else:
         return Response({'message': 'Invalid email or password'}, status=401)
 
+
+@api_view(['POST'])
+def api_purchase(request):
+    print("1")
+    print(request.data)
+    serializer = PurchaseSerializer(data=request.data)
+    print("2")
+
+    serializer.is_valid(raise_exception=True)
+    print("3")
+
+    prescription = serializer.validated_data['prescription']
+    is_paid = serializer.validated_data['is_paid']
+    purchase_status = serializer.validated_data['purchase_status']
+    client_name = serializer.validated_data['client_name']
+    pharmacist_id = serializer.validated_data['pharmacist_id']
+
+    print("PRESCRIPTION ", prescription)
+    print("IS_PAID ", is_paid)
+    print("PURCHASE_STATUS ", purchase_status)
+    print("client_name ", client_name)
+    print("pharmacist_id ", pharmacist_id)
+
+    purchase_obj = Purchase.objects.create(prescription=prescription, is_paid = is_paid, purchase_status = purchase_status, client_name = client_name, pharmacist_id = pharmacist_id)
