@@ -90,10 +90,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "relationalDB",
+        'NAME': "postgres",
         'USER': "postgres",
         'PASSWORD': "postgres",
-        'HOST': "relationaldb.cpcarcsbcsgg.us-east-1.rds.amazonaws.com",
+        'HOST': "relationaldb.cdi3uyljvemz.us-east-1.rds.amazonaws.com",
         'PORT': '5432',
     }
 }

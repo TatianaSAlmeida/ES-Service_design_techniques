@@ -14,6 +14,7 @@ class Pharmacist(models.Model):
 class Purchase(models.Model):
     PURCHASE_TYPES = (('WP', 'Waiting Payment'), ('WR', 'Waiting for Robot'), ('C', 'Completed'))
 
+    id = models.AutoField(primary_key=True)
     prescription = models.CharField(default="")
     is_paid = models.BooleanField(default=False)
     purchase_status = models.CharField(choices=PURCHASE_TYPES, default='Waiting Payment',max_length=40)

@@ -32,7 +32,8 @@ function DrugList() {
 
 
     function handlePurchase(){
-        console.log("hello")
+       
+        console.log(prescription)
         axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist_id})
              .then( response => {console.log(response)})
              .finally(() => {

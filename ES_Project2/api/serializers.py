@@ -30,5 +30,5 @@ class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Purchase
         fields = (
-            'prescription', 'is_paid', 'purchase_status', 'client_name', 'pharmacist'
+            'id', 'prescription', 'is_paid', 'purchase_status', 'client_name', 'pharmacist'
         )
