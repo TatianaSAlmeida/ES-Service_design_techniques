@@ -11,5 +11,6 @@ router.register(r'purchase', PurchaseViewSet)
 urlpatterns = [
    path('', include(router.urls)),
    path('login/', api_login, name='login'),
-   path('createPurchase/', api_purchase, name='purchase')
+   path('createPurchase/', api_purchase, name='purchase')    path('get_purchases/', api_get_purchase, name='get_purchase'),
+   path('get_purchases/', api_get_purchase, name='get_purchase')
 ]

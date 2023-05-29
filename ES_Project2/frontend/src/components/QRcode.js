@@ -9,29 +9,40 @@ import React from "react";
 import jwtDecode from 'jwt-decode';
 import Popup from './Popup';
 
+
+
+
 function QRcode() {
 
-    const [user, setUser] = useState(undefined);
+    const [user, setUser] = useState('1');
     const [buttonPopup, setButtonPopup] = useState(false);
 
     const pharmacistID = localStorage.getItem('data');
     console.log("ID: " + pharmacistID)
 
 
+    const accessToken = localStorage.getItem('accessToken');
+ 
 
     // ================ User authentication ==========================
-    const checkTokenExpiration = () => {
+   
+    const checkTokenExpiration = async () => {
         const accessToken = localStorage.getItem('accessToken');
         if(accessToken){
-            const decodedToken = jwtDecode(accessToken);
-            console.log("2");
+            const decodedToken = await jwtDecode(accessToken);
             setUser(decodedToken);
-  
+            if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+                console.log("aqui");
+                  setUser(undefined);
+              }
+    
+        }else{
+            navigate('/');
+    
         }
       
-
+    
       };
-
     useEffect(() => {
         checkTokenExpiration();
     }, []);
@@ -41,6 +52,8 @@ function QRcode() {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('data');
         setUser(undefined);
+        checkTokenExpiration();
+
     }
 
 
@@ -93,9 +106,7 @@ function QRcode() {
 
 
     return(
-        !user ? 
-        <Navigate to = "/" />
-        :
+        
         <div >
             <div className="logout">
                 <button onClick={() => {setButtonPopup(true)}} className="btn-2"> Status </button>   
@@ -126,6 +137,8 @@ function QRcode() {
                     
         </div>
         </div>
+       
+
     )
 }
 

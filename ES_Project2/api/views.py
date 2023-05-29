@@ -4,6 +4,7 @@ from .serializers import *
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from .models import *
+from django.core import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -51,6 +52,7 @@ def api_login(request):
 
 
 @api_view(['POST'])
+<<<<<<< HEAD
 def api_purchase(request):
 
     serializer = PurchaseSerializer(data=request.data)
@@ -66,3 +68,9 @@ def api_purchase(request):
 
     return Response({'message': 'Yo', 'valid': '0'})
 
+=======
+def api_get_purchase(request):
+    purchases = Purchase.objects.all()
+    serialized_purchases = serializers.serialize('json', purchases)
+    return Response(serialized_purchases, content_type='application/json')
+>>>>>>> popup_1
