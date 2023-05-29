@@ -14,16 +14,14 @@ import Popup from './Popup';
 
 function QRcode() {
 
-    const [user, setUser] = useState('1');
-    const [buttonPopup, setButtonPopup] = useState(false);
 
     const pharmacistID = localStorage.getItem('data');
-    console.log("ID: " + pharmacistID)
 
 
     const accessToken = localStorage.getItem('accessToken');
  
-
+    const [user, setUser] = useState(undefined);
+    const [buttonPopup, setButtonPopup] = useState(false);
     // ================ User authentication ==========================
    
     const checkTokenExpiration = async () => {
@@ -32,7 +30,6 @@ function QRcode() {
             const decodedToken = await jwtDecode(accessToken);
             setUser(decodedToken);
             if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
-                console.log("aqui");
                   setUser(undefined);
               }
     
@@ -83,7 +80,6 @@ function QRcode() {
      
                 dictionary[key] = value;
             });
-            //console.log(dictionary);
 
             const randomNumber = Math.floor(Math.random() * 4) + 2; // generate random number between 2 and 5
 
@@ -91,9 +87,6 @@ function QRcode() {
             const randomEntries = entries.sort(() => Math.random() - 0.5).slice(0, randomNumber); // shuffle array and extract the X random pairs
 
             const newDict = Object.fromEntries(randomEntries); // convert array back to dictionary
-
-            
-            console.log(newDict);
     
             navigate('/list', { state: newDict });
             

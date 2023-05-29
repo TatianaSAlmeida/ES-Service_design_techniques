@@ -24,7 +24,6 @@ function Login(){
             setUser(decodedToken);
 
             if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
-                console.log("aqui");
                   setUser(undefined);
               }
            
@@ -55,8 +54,6 @@ function Login(){
             axios.post('api/login/', { email, password })
             .then(res => {
                 if(res.data.valid === '1') {
-                    console.log(user);
-
                     //====== TOKEN =========
                     const accessToken = res.data.access_token;
                     const refreshToken = res.data.refresh_token;
@@ -75,7 +72,6 @@ function Login(){
             })
             .catch(err => {
                 setErrors(["Invalid email or password"])
-                console.log(err);
             });
         }
     }
@@ -89,8 +85,8 @@ function Login(){
         <div className="login">
             
             <div className="account" >
-                <input className="writingField" placeholder=" Email" type="email" onChange={(e) => {setEmail(e.target.value);console.log(email)}}/>
-                <input className="writingField" placeholder=" Password" type="password" onChange={(e) => {setPassword(e.target.value);console.log(password)}}/>
+                <input className="writingField" placeholder=" Email" type="email" onChange={(e) => {setEmail(e.target.value);}}/>
+                <input className="writingField" placeholder=" Password" type="password" onChange={(e) => {setPassword(e.target.value);}}/>
                 <button onClick={() => login()} className="btn"> Login </button>
                 {
                     errors.map((error, index) => <div key={index} className="error">{error}</div>)

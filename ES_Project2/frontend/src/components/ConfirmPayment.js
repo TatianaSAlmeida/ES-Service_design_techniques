@@ -19,7 +19,7 @@ const ConfirmPayment = () => {
   const redirect = () => {
     navigate("/")
   }
-  const [user, setUser] = useState('1');
+  const [user, setUser] = useState(undefined);
   const [buttonPopup, setButtonPopup] = useState(false);
 
     // ================ User authentication ==========================
@@ -30,7 +30,6 @@ const ConfirmPayment = () => {
             const decodedToken = await jwtDecode(accessToken);
             setUser(decodedToken);
             if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
-                console.log("aqui");
                   setUser(undefined);
               }
     

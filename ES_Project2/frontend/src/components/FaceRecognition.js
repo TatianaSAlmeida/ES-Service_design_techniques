@@ -20,7 +20,7 @@ function Recognition() {
 
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-    const [user, setUser] = useState('1');
+    const [user, setUser] = useState(undefined);
     const [buttonPopup, setButtonPopup] = useState(false);
   
       // ================ User authentication ==========================
@@ -31,7 +31,6 @@ function Recognition() {
               const decodedToken = await jwtDecode(accessToken);
               setUser(decodedToken);
               if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
-                  console.log("aqui");
                     setUser(undefined);
                 }
       
@@ -91,6 +90,7 @@ function Recognition() {
 
             let formField = new FormData();
             formField.append("image", imageFile, uploadedImage.name);
+            formField.append("payment_id", localStorage.getItem("purchaseID"));
 
             axios.post('/face_recognition_verifier/', formField)
                                         .then(async res => {

@@ -27,7 +27,7 @@ function DrugList() {
     const prescription = {};
     const navigate = useNavigate();
 
-    const [user, setUser] = useState('1');
+    const [user, setUser] = useState(undefined);
     const [buttonPopup, setButtonPopup] = useState(false);
 
   
@@ -68,7 +68,6 @@ function DrugList() {
 
 
     function handlePurchase(){
-        console.log(prescription)
         axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist_id})
              .then( response => { 
                 localStorage.setItem('purchaseID', response.data["id"]);})
@@ -79,7 +78,6 @@ function DrugList() {
 
     function createDictKeys(){
         Object.keys(drugList2).map((key, index) => prescription[index] = [drugList2[key][1], drugList2[key][0][0]]);
-        console.log(prescription)
     }
 
     const listKeys = Object.keys(drugList2).map( (key, index) =>
