@@ -17,7 +17,7 @@ function QRcode() {
     //Generates a random prescription, based on the contents of the "public/ListOfDrugs.txt file"
     const generate = async () => {
         try {
-            const response = await fetch("/ListOfDrugs.txt");
+            const response = await fetch("/static/assets/ListOfDrugs.txt");
             const content = await response.text();
             const dictionary = {};
             const lines = content.split("\r\n"); // split the text in lines
@@ -43,8 +43,8 @@ function QRcode() {
 
             console.log(newDict);
     
-            navigate('/list', { state: newDict });
-            //navigate('/list', { pharmacist: pharmacistId, client_name: "", state: newDict });
+            //navigate('/list', { state: newDict });
+            navigate('/list', { pharmacist: pharmacistId, state: newDict });
 
 
           } catch (error) {
