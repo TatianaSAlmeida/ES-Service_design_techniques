@@ -23,9 +23,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # token['custom_payload'] = user.custom_property
 
         return token
-    
+        
     
 class PurchaseSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Purchase
         fields = (

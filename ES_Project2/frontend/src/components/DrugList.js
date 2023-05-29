@@ -19,8 +19,7 @@ function DrugList() {
     const is_paid = false
     const purchase_status = "Waiting Payment"
     const client_name = ""
-    const pharmacist = localStorage.getItem('data');
-    console.log("ID: " + pharmacist)
+    const pharmacist_id = parseInt(localStorage.getItem('data'));
 
 
     const prescription = {};
@@ -34,11 +33,13 @@ function DrugList() {
 
     function handlePurchase(){
         console.log("hello")
-        axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist})
-             .then()
+        axios.post('api/createPurchase/', {prescription, is_paid, purchase_status, client_name, pharmacist_id})
+             .then( response => {console.log(response)})
              .finally(() => {
                 console.log("there")
                 navigate('/face-recognition');
+            }).catch(err => {
+                console.log("Erro" + err)
             });
         console.log("ok")
     }

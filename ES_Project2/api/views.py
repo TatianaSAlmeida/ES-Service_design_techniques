@@ -59,11 +59,11 @@ def api_purchase(request):
 
     serializer.is_valid(raise_exception=True)
     print("3")
-
-    prescription = serializer.validated_data['prescription']
+    
+    prescription = serializer.validated_data['ok']
     is_paid = serializer.validated_data['is_paid']
     purchase_status = serializer.validated_data['purchase_status']
-    client_name = serializer.validated_data['client_name']
+    client_name = serializer.validated_data['client_name_']
     pharmacist_id = serializer.validated_data['pharmacist_id']
 
     print("PRESCRIPTION ", prescription)
@@ -71,5 +71,6 @@ def api_purchase(request):
     print("PURCHASE_STATUS ", purchase_status)
     print("client_name ", client_name)
     print("pharmacist_id ", pharmacist_id)
+    print("4")
 
     purchase_obj = Purchase.objects.create(prescription=prescription, is_paid = is_paid, purchase_status = purchase_status, client_name = client_name, pharmacist_id = pharmacist_id)
