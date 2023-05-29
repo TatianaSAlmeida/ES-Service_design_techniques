@@ -95,7 +95,7 @@ function QRcode() {
             
             console.log(newDict);
     
-            navigate('/list', { pharmacist: pharmacistID, state: newDict });
+            navigate('/list', { state: newDict });
             
 
           } catch (error) {
