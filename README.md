@@ -9,6 +9,8 @@ Objectives:
     • Apply the cloud-based technologies you have learned to create a simple, powerful, responsive, well-designed, and beautiful service.
 
 Authors:
-    • Edgar Duarte
-    • Sofia Neves
-    • Tatiana Almeida
+    <ul>
+    <li> Edgar Duarte <\li>
+    <li> Sofia Neves <\li>
+    <li> Tatiana Almeida <\li>
+    </ul>
