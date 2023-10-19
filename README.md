@@ -10,7 +10,7 @@ Objectives:
 
 Authors:
     <ul>
-    <li> Edgar Duarte <\li>
-    <li> Sofia Neves <\li>
-    <li> Tatiana Almeida <\li>
+    <li> Edgar Duarte 
+    <li> Sofia Neves 
+    <li> Tatiana Almeida 
     </ul>
