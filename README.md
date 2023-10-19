@@ -10,7 +10,7 @@ Objectives:
 
 Authors:
     <ul>
-    <li> Edgar Duarte 
-    <li> Sofia Neves 
-    <li> Tatiana Almeida 
+    <li> Edgar Duarte (@EdgarTip)
+    <li> Sofia Neves (@TatianaSAlmeida)
+    <li> Tatiana Almeida (@sneves-git)
     </ul>
